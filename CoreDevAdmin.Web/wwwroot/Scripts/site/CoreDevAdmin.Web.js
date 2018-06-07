@@ -3921,6 +3921,18 @@ var CoreDevAdmin;
             MovieGrid.prototype.getIdProperty = function () { return MovieDB.MovieRow.idProperty; };
             MovieGrid.prototype.getLocalTextPrefix = function () { return MovieDB.MovieRow.localTextPrefix; };
             MovieGrid.prototype.getService = function () { return MovieDB.MovieService.baseUrl; };
+            MovieGrid.prototype.getQuickSearchFields = function () {
+                var fld = MovieDB.MovieRow.Fields;
+                var txt = function (fieldName) { return Q
+                    .text("Db." + MovieDB.MovieRow.localTextPrefix + '.' + fieldName)
+                    .toLowerCase(); };
+                return [
+                    { name: "", title: "all" },
+                    { name: "Description" /* Description */, title: txt("Description" /* Description */) },
+                    { name: "Storyline" /* Storyline */, title: txt("Storyline" /* Storyline */) },
+                    { name: "Year" /* Year */, title: txt("Year" /* Year */) }
+                ];
+            };
             MovieGrid = __decorate([
                 Serenity.Decorators.registerClass()
             ], MovieGrid);

@@ -2426,6 +2426,7 @@ declare namespace CoreDevAdmin.MovieDB {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+        protected getQuickSearchFields(): Serenity.QuickSearchField[];
     }
 }
 declare namespace CoreDevAdmin.Northwind {

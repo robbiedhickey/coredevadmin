@@ -12,5 +12,20 @@ namespace CoreDevAdmin.MovieDB {
         constructor(container: JQuery) {
             super(container);
         }
+
+        protected getQuickSearchFields() : Serenity.QuickSearchField[] {
+            let fld = MovieRow.Fields;
+
+            let txt = fieldName => Q
+                .text("Db." + MovieRow.localTextPrefix + '.' + fieldName)
+                .toLowerCase();
+                
+            return [
+                { name: "", title: "all" },
+                { name: fld.Description, title: txt(fld.Description) },
+                { name: fld.Storyline, title: txt(fld.Storyline) },
+                { name: fld.Year, title: txt(fld.Year) }
+            ]
+        }
     }
 }
