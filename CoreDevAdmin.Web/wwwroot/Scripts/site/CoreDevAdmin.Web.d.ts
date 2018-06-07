@@ -783,12 +783,59 @@ declare namespace CoreDevAdmin.Membership {
 declare namespace CoreDevAdmin.MovieDB {
 }
 declare namespace CoreDevAdmin.MovieDB {
+    interface GenreForm {
+        Name: Serenity.StringEditor;
+    }
+    class GenreForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
+}
+declare namespace CoreDevAdmin.MovieDB {
+    interface GenreRow {
+        GenreId?: number;
+        Name?: string;
+    }
+    namespace GenreRow {
+        const idProperty = "GenreId";
+        const nameProperty = "Name";
+        const localTextPrefix = "MovieDB.Genre";
+        const lookupKey = "MovieDB.Genre";
+        function getLookup(): Q.Lookup<GenreRow>;
+        const enum Fields {
+            GenreId = "GenreId",
+            Name = "Name",
+        }
+    }
+}
+declare namespace CoreDevAdmin.MovieDB {
+    namespace GenreService {
+        const baseUrl = "MovieDB/Genre";
+        function Create(request: Serenity.SaveRequest<GenreRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<GenreRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<GenreRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<GenreRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        const enum Methods {
+            Create = "MovieDB/Genre/Create",
+            Update = "MovieDB/Genre/Update",
+            Delete = "MovieDB/Genre/Delete",
+            Retrieve = "MovieDB/Genre/Retrieve",
+            List = "MovieDB/Genre/List",
+        }
+    }
+}
+declare namespace CoreDevAdmin.MovieDB {
+}
+declare namespace CoreDevAdmin.MovieDB {
     interface MovieForm {
         Title: Serenity.StringEditor;
         Description: Serenity.TextAreaEditor;
         Storyline: Serenity.TextAreaEditor;
         Year: Serenity.IntegerEditor;
         ReleaseDate: Serenity.DateEditor;
+        GenreId: Serenity.LookupEditor;
         Kind: Serenity.EnumEditor;
         Runtime: Serenity.IntegerEditor;
     }
@@ -815,6 +862,8 @@ declare namespace CoreDevAdmin.MovieDB {
         ReleaseDate?: string;
         Runtime?: number;
         Kind?: MovieKind;
+        GenreId?: number;
+        GenreName?: string;
     }
     namespace MovieRow {
         const idProperty = "MovieId";
@@ -829,6 +878,8 @@ declare namespace CoreDevAdmin.MovieDB {
             ReleaseDate = "ReleaseDate",
             Runtime = "Runtime",
             Kind = "Kind",
+            GenreId = "GenreId",
+            GenreName = "GenreName",
         }
     }
 }
@@ -2416,6 +2467,26 @@ declare namespace CoreDevAdmin.Common {
     class UserPreferenceStorage implements Serenity.SettingStorage {
         getItem(key: string): string;
         setItem(key: string, data: string): void;
+    }
+}
+declare namespace CoreDevAdmin.MovieDB {
+    class GenreDialog extends Serenity.EntityDialog<GenreRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: GenreForm;
+    }
+}
+declare namespace CoreDevAdmin.MovieDB {
+    class GenreGrid extends Serenity.EntityGrid<GenreRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof GenreDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
     }
 }
 declare namespace CoreDevAdmin.MovieDB {

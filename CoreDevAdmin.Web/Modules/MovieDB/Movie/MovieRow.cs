@@ -70,7 +70,22 @@ namespace CoreDevAdmin.MovieDB.Entities
         {
             get { return (MovieKind?)Fields.Kind[this]; }
             set { Fields.Kind[this] = (Int32?)value; }
-}
+        }
+
+        [DisplayName("Genre"), ForeignKey("[mov].Genre", "GenreId"), LeftJoin("g")]
+        [LookupEditor(typeof(GenreRow), InplaceAdd = true)]
+        public Int32? GenreId 
+        {
+            get { return Fields.GenreId[this]; }
+            set { Fields.GenreId[this] = value; }
+        }
+
+        [DisplayName("Genre"), Expression("g.Name")]
+        public String GenreName
+        {
+            get { return Fields.GenreName[this]; }
+            set { Fields.GenreName[this] = value; }
+        }
 
         IIdField IIdRow.IdField
         {
@@ -107,6 +122,9 @@ namespace CoreDevAdmin.MovieDB.Entities
             public Int32Field Runtime;
 
             public readonly Int32Field Kind;
+
+            public readonly Int32Field GenreId;
+            public readonly StringField GenreName;
 
 		}
     }

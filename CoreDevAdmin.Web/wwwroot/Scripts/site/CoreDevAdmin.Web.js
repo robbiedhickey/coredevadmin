@@ -812,6 +812,68 @@ var CoreDevAdmin;
 (function (CoreDevAdmin) {
     var MovieDB;
     (function (MovieDB) {
+        var GenreForm = /** @class */ (function (_super) {
+            __extends(GenreForm, _super);
+            function GenreForm(prefix) {
+                var _this = _super.call(this, prefix) || this;
+                if (!GenreForm.init) {
+                    GenreForm.init = true;
+                    var s = Serenity;
+                    var w0 = s.StringEditor;
+                    Q.initFormType(GenreForm, [
+                        'Name', w0
+                    ]);
+                }
+                return _this;
+            }
+            GenreForm.formKey = 'MovieDB.Genre';
+            return GenreForm;
+        }(Serenity.PrefixedContext));
+        MovieDB.GenreForm = GenreForm;
+    })(MovieDB = CoreDevAdmin.MovieDB || (CoreDevAdmin.MovieDB = {}));
+})(CoreDevAdmin || (CoreDevAdmin = {}));
+var CoreDevAdmin;
+(function (CoreDevAdmin) {
+    var MovieDB;
+    (function (MovieDB) {
+        var GenreRow;
+        (function (GenreRow) {
+            GenreRow.idProperty = 'GenreId';
+            GenreRow.nameProperty = 'Name';
+            GenreRow.localTextPrefix = 'MovieDB.Genre';
+            GenreRow.lookupKey = 'MovieDB.Genre';
+            function getLookup() {
+                return Q.getLookup('MovieDB.Genre');
+            }
+            GenreRow.getLookup = getLookup;
+        })(GenreRow = MovieDB.GenreRow || (MovieDB.GenreRow = {}));
+    })(MovieDB = CoreDevAdmin.MovieDB || (CoreDevAdmin.MovieDB = {}));
+})(CoreDevAdmin || (CoreDevAdmin = {}));
+var CoreDevAdmin;
+(function (CoreDevAdmin) {
+    var MovieDB;
+    (function (MovieDB) {
+        var GenreService;
+        (function (GenreService) {
+            GenreService.baseUrl = 'MovieDB/Genre';
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                GenreService[x] = function (r, s, o) {
+                    return Q.serviceRequest(GenreService.baseUrl + '/' + x, r, s, o);
+                };
+            });
+        })(GenreService = MovieDB.GenreService || (MovieDB.GenreService = {}));
+    })(MovieDB = CoreDevAdmin.MovieDB || (CoreDevAdmin.MovieDB = {}));
+})(CoreDevAdmin || (CoreDevAdmin = {}));
+var CoreDevAdmin;
+(function (CoreDevAdmin) {
+    var MovieDB;
+    (function (MovieDB) {
         var MovieForm = /** @class */ (function (_super) {
             __extends(MovieForm, _super);
             function MovieForm(prefix) {
@@ -823,14 +885,16 @@ var CoreDevAdmin;
                     var w1 = s.TextAreaEditor;
                     var w2 = s.IntegerEditor;
                     var w3 = s.DateEditor;
-                    var w4 = s.EnumEditor;
+                    var w4 = s.LookupEditor;
+                    var w5 = s.EnumEditor;
                     Q.initFormType(MovieForm, [
                         'Title', w0,
                         'Description', w1,
                         'Storyline', w1,
                         'Year', w2,
                         'ReleaseDate', w3,
-                        'Kind', w4,
+                        'GenreId', w4,
+                        'Kind', w5,
                         'Runtime', w2
                     ]);
                 }
@@ -3897,6 +3961,52 @@ var CoreDevAdmin;
         }());
         Common.UserPreferenceStorage = UserPreferenceStorage;
     })(Common = CoreDevAdmin.Common || (CoreDevAdmin.Common = {}));
+})(CoreDevAdmin || (CoreDevAdmin = {}));
+var CoreDevAdmin;
+(function (CoreDevAdmin) {
+    var MovieDB;
+    (function (MovieDB) {
+        var GenreDialog = /** @class */ (function (_super) {
+            __extends(GenreDialog, _super);
+            function GenreDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new MovieDB.GenreForm(_this.idPrefix);
+                return _this;
+            }
+            GenreDialog.prototype.getFormKey = function () { return MovieDB.GenreForm.formKey; };
+            GenreDialog.prototype.getIdProperty = function () { return MovieDB.GenreRow.idProperty; };
+            GenreDialog.prototype.getLocalTextPrefix = function () { return MovieDB.GenreRow.localTextPrefix; };
+            GenreDialog.prototype.getNameProperty = function () { return MovieDB.GenreRow.nameProperty; };
+            GenreDialog.prototype.getService = function () { return MovieDB.GenreService.baseUrl; };
+            GenreDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], GenreDialog);
+            return GenreDialog;
+        }(Serenity.EntityDialog));
+        MovieDB.GenreDialog = GenreDialog;
+    })(MovieDB = CoreDevAdmin.MovieDB || (CoreDevAdmin.MovieDB = {}));
+})(CoreDevAdmin || (CoreDevAdmin = {}));
+var CoreDevAdmin;
+(function (CoreDevAdmin) {
+    var MovieDB;
+    (function (MovieDB) {
+        var GenreGrid = /** @class */ (function (_super) {
+            __extends(GenreGrid, _super);
+            function GenreGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            GenreGrid.prototype.getColumnsKey = function () { return 'MovieDB.Genre'; };
+            GenreGrid.prototype.getDialogType = function () { return MovieDB.GenreDialog; };
+            GenreGrid.prototype.getIdProperty = function () { return MovieDB.GenreRow.idProperty; };
+            GenreGrid.prototype.getLocalTextPrefix = function () { return MovieDB.GenreRow.localTextPrefix; };
+            GenreGrid.prototype.getService = function () { return MovieDB.GenreService.baseUrl; };
+            GenreGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], GenreGrid);
+            return GenreGrid;
+        }(Serenity.EntityGrid));
+        MovieDB.GenreGrid = GenreGrid;
+    })(MovieDB = CoreDevAdmin.MovieDB || (CoreDevAdmin.MovieDB = {}));
 })(CoreDevAdmin || (CoreDevAdmin = {}));
 var CoreDevAdmin;
 (function (CoreDevAdmin) {
