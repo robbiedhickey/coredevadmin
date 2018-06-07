@@ -835,7 +835,6 @@ declare namespace CoreDevAdmin.MovieDB {
         Storyline: Serenity.TextAreaEditor;
         Year: Serenity.IntegerEditor;
         ReleaseDate: Serenity.DateEditor;
-        GenreId: Serenity.LookupEditor;
         Kind: Serenity.EnumEditor;
         Runtime: Serenity.IntegerEditor;
     }
@@ -862,8 +861,6 @@ declare namespace CoreDevAdmin.MovieDB {
         ReleaseDate?: string;
         Runtime?: number;
         Kind?: MovieKind;
-        GenreId?: number;
-        GenreName?: string;
     }
     namespace MovieRow {
         const idProperty = "MovieId";
@@ -878,8 +875,6 @@ declare namespace CoreDevAdmin.MovieDB {
             ReleaseDate = "ReleaseDate",
             Runtime = "Runtime",
             Kind = "Kind",
-            GenreId = "GenreId",
-            GenreName = "GenreName",
         }
     }
 }

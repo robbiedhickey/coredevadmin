@@ -21,8 +21,6 @@ namespace CoreDevAdmin.MovieDB.Columns
         public String Storyline { get; set; }
         public Int32 Year { get; set; }
         public DateTime ReleaseDate { get; set; }
-        [Width(100), QuickFilter]
-        public String GenreName { get; set; }
         public MovieKind Kind { get; set; }
         public Int32 Runtime { get; set; }
     }
