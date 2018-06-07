@@ -789,12 +789,20 @@ declare namespace CoreDevAdmin.MovieDB {
         Storyline: Serenity.TextAreaEditor;
         Year: Serenity.IntegerEditor;
         ReleaseDate: Serenity.DateEditor;
+        Kind: Serenity.EnumEditor;
         Runtime: Serenity.IntegerEditor;
     }
     class MovieForm extends Serenity.PrefixedContext {
         static formKey: string;
         private static init;
         constructor(prefix: string);
+    }
+}
+declare namespace CoreDevAdmin.MovieDB {
+    enum MovieKind {
+        Film = 1,
+        TvSeries = 2,
+        MiniSeries = 3,
     }
 }
 declare namespace CoreDevAdmin.MovieDB {
@@ -806,6 +814,7 @@ declare namespace CoreDevAdmin.MovieDB {
         Year?: number;
         ReleaseDate?: string;
         Runtime?: number;
+        Kind?: MovieKind;
     }
     namespace MovieRow {
         const idProperty = "MovieId";
@@ -819,6 +828,7 @@ declare namespace CoreDevAdmin.MovieDB {
             Year = "Year",
             ReleaseDate = "ReleaseDate",
             Runtime = "Runtime",
+            Kind = "Kind",
         }
     }
 }

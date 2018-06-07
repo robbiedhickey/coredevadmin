@@ -65,7 +65,12 @@ namespace CoreDevAdmin.MovieDB.Entities
             set { Fields.Runtime[this] = value; }
         }
 
-
+        [DisplayName("Kind"), NotNull, DefaultValue(MovieKind.Film)]
+        public MovieKind? Kind
+        {
+            get { return (MovieKind?)Fields.Kind[this]; }
+            set { Fields.Kind[this] = (Int32?)value; }
+}
 
         IIdField IIdRow.IdField
         {
@@ -101,6 +106,7 @@ namespace CoreDevAdmin.MovieDB.Entities
 
             public Int32Field Runtime;
 
+            public readonly Int32Field Kind;
 
 		}
     }
