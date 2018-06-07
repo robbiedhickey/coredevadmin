@@ -8730,3 +8730,9 @@ section.content > .s-DataGrid {
 .s-NoteDialog .ui-dialog-content {
   padding-bottom: 10px;
 }
+.s-MovieDB-MovieDialog > .size {
+  width: 650px;
+}
+.s-MovieDB-MovieDialog .caption {
+  width: 150px;
+}

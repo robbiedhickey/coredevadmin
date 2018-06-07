@@ -780,6 +780,65 @@ declare namespace CoreDevAdmin.Membership {
         Password?: string;
     }
 }
+declare namespace CoreDevAdmin.MovieDB {
+}
+declare namespace CoreDevAdmin.MovieDB {
+    interface MovieForm {
+        Title: Serenity.StringEditor;
+        Description: Serenity.StringEditor;
+        Storyline: Serenity.StringEditor;
+        Year: Serenity.IntegerEditor;
+        ReleaseDate: Serenity.DateEditor;
+        Runtime: Serenity.IntegerEditor;
+    }
+    class MovieForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
+}
+declare namespace CoreDevAdmin.MovieDB {
+    interface MovieRow {
+        MovieId?: number;
+        Title?: string;
+        Description?: string;
+        Storyline?: string;
+        Year?: number;
+        ReleaseDate?: string;
+        Runtime?: number;
+    }
+    namespace MovieRow {
+        const idProperty = "MovieId";
+        const nameProperty = "Title";
+        const localTextPrefix = "MovieDB.Movie";
+        const enum Fields {
+            MovieId = "MovieId",
+            Title = "Title",
+            Description = "Description",
+            Storyline = "Storyline",
+            Year = "Year",
+            ReleaseDate = "ReleaseDate",
+            Runtime = "Runtime",
+        }
+    }
+}
+declare namespace CoreDevAdmin.MovieDB {
+    namespace MovieService {
+        const baseUrl = "MovieDB/Movie";
+        function Create(request: Serenity.SaveRequest<MovieRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<MovieRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MovieRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MovieRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        const enum Methods {
+            Create = "MovieDB/Movie/Create",
+            Update = "MovieDB/Movie/Update",
+            Delete = "MovieDB/Movie/Delete",
+            Retrieve = "MovieDB/Movie/Retrieve",
+            List = "MovieDB/Movie/List",
+        }
+    }
+}
 declare namespace CoreDevAdmin.Northwind {
 }
 declare namespace CoreDevAdmin.Northwind {
@@ -2347,6 +2406,26 @@ declare namespace CoreDevAdmin.Common {
     class UserPreferenceStorage implements Serenity.SettingStorage {
         getItem(key: string): string;
         setItem(key: string, data: string): void;
+    }
+}
+declare namespace CoreDevAdmin.MovieDB {
+    class MovieDialog extends Serenity.EntityDialog<MovieRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: MovieForm;
+    }
+}
+declare namespace CoreDevAdmin.MovieDB {
+    class MovieGrid extends Serenity.EntityGrid<MovieRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MovieDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
     }
 }
 declare namespace CoreDevAdmin.Northwind {
