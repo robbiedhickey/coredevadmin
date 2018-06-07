@@ -6,7 +6,8 @@ namespace CoreDevAdmin.MovieDB.Entities
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
-    using System.ComponentModel;
+  using System.Collections.Generic;
+  using System.ComponentModel;
     using System.IO;
 
     [ConnectionKey("Default"), Module("MovieDB"), TableName("[mov].[Movie]")]
@@ -72,6 +73,15 @@ namespace CoreDevAdmin.MovieDB.Entities
             set { Fields.Kind[this] = (Int32?)value; }
         }
 
+        [DisplayName("Genres")]
+        [LookupEditor(typeof(GenreRow), Multiple = true), NotMapped]
+        [LinkingSetRelation(typeof(MovieGenresRow), "MovieId", "GenreId")]
+        public List<Int32> GenreList
+        {
+            get { return Fields.GenreList[this]; }
+            set { Fields.GenreList[this] = value; }
+        }
+
         IIdField IIdRow.IdField
         {
             get { return Fields.MovieId; }
@@ -107,6 +117,7 @@ namespace CoreDevAdmin.MovieDB.Entities
             public Int32Field Runtime;
 
             public readonly Int32Field Kind;
+            public ListField<Int32> GenreList;
 		}
     }
 }

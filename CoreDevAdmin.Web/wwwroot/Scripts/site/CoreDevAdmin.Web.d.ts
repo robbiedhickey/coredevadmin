@@ -835,6 +835,7 @@ declare namespace CoreDevAdmin.MovieDB {
         Storyline: Serenity.TextAreaEditor;
         Year: Serenity.IntegerEditor;
         ReleaseDate: Serenity.DateEditor;
+        GenreList: Serenity.LookupEditor;
         Kind: Serenity.EnumEditor;
         Runtime: Serenity.IntegerEditor;
     }
@@ -842,6 +843,38 @@ declare namespace CoreDevAdmin.MovieDB {
         static formKey: string;
         private static init;
         constructor(prefix: string);
+    }
+}
+declare namespace CoreDevAdmin.MovieDB {
+    interface MovieGenresRow {
+        MovieGenreId?: number;
+        MovieId?: number;
+        GenreId?: number;
+        MovieTitle?: string;
+        MovieDescription?: string;
+        MovieStoryline?: string;
+        MovieYear?: number;
+        MovieReleaseDate?: string;
+        MovieRuntime?: number;
+        MovieKind?: number;
+        GenreName?: string;
+    }
+    namespace MovieGenresRow {
+        const idProperty = "MovieGenreId";
+        const localTextPrefix = "MovieDB.MovieGenres";
+        const enum Fields {
+            MovieGenreId = "MovieGenreId",
+            MovieId = "MovieId",
+            GenreId = "GenreId",
+            MovieTitle = "MovieTitle",
+            MovieDescription = "MovieDescription",
+            MovieStoryline = "MovieStoryline",
+            MovieYear = "MovieYear",
+            MovieReleaseDate = "MovieReleaseDate",
+            MovieRuntime = "MovieRuntime",
+            MovieKind = "MovieKind",
+            GenreName = "GenreName",
+        }
     }
 }
 declare namespace CoreDevAdmin.MovieDB {
@@ -861,6 +894,7 @@ declare namespace CoreDevAdmin.MovieDB {
         ReleaseDate?: string;
         Runtime?: number;
         Kind?: MovieKind;
+        GenreList?: number[];
     }
     namespace MovieRow {
         const idProperty = "MovieId";
@@ -875,6 +909,7 @@ declare namespace CoreDevAdmin.MovieDB {
             ReleaseDate = "ReleaseDate",
             Runtime = "Runtime",
             Kind = "Kind",
+            GenreList = "GenreList",
         }
     }
 }

@@ -885,14 +885,16 @@ var CoreDevAdmin;
                     var w1 = s.TextAreaEditor;
                     var w2 = s.IntegerEditor;
                     var w3 = s.DateEditor;
-                    var w4 = s.EnumEditor;
+                    var w4 = s.LookupEditor;
+                    var w5 = s.EnumEditor;
                     Q.initFormType(MovieForm, [
                         'Title', w0,
                         'Description', w1,
                         'Storyline', w1,
                         'Year', w2,
                         'ReleaseDate', w3,
-                        'Kind', w4,
+                        'GenreList', w4,
+                        'Kind', w5,
                         'Runtime', w2
                     ]);
                 }
@@ -902,6 +904,17 @@ var CoreDevAdmin;
             return MovieForm;
         }(Serenity.PrefixedContext));
         MovieDB.MovieForm = MovieForm;
+    })(MovieDB = CoreDevAdmin.MovieDB || (CoreDevAdmin.MovieDB = {}));
+})(CoreDevAdmin || (CoreDevAdmin = {}));
+var CoreDevAdmin;
+(function (CoreDevAdmin) {
+    var MovieDB;
+    (function (MovieDB) {
+        var MovieGenresRow;
+        (function (MovieGenresRow) {
+            MovieGenresRow.idProperty = 'MovieGenreId';
+            MovieGenresRow.localTextPrefix = 'MovieDB.MovieGenres';
+        })(MovieGenresRow = MovieDB.MovieGenresRow || (MovieDB.MovieGenresRow = {}));
     })(MovieDB = CoreDevAdmin.MovieDB || (CoreDevAdmin.MovieDB = {}));
 })(CoreDevAdmin || (CoreDevAdmin = {}));
 var CoreDevAdmin;
