@@ -22,6 +22,8 @@ namespace CoreDevAdmin.MovieDB.Columns
         public Int32 Year { get; set; }
         public DateTime ReleaseDate { get; set; }
         public MovieKind Kind { get; set; }
+        [Width(200), GenreListFormatter, QuickFilter]
+        public List<Int32> GenreList { get; set; }
         public Int32 Runtime { get; set; }
     }
 }

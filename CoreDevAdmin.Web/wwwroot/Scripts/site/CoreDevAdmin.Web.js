@@ -4023,6 +4023,33 @@ var CoreDevAdmin;
 (function (CoreDevAdmin) {
     var MovieDB;
     (function (MovieDB) {
+        var GenreListFormatter = /** @class */ (function () {
+            function GenreListFormatter() {
+            }
+            GenreListFormatter.prototype.format = function (ctx) {
+                var idList = ctx.value;
+                if (!idList || !idList.length)
+                    return "";
+                var byId = MovieDB.GenreRow.getLookup().itemById;
+                return idList.map(function (x) {
+                    var g = byId[x];
+                    if (!g)
+                        return x.toString();
+                    return Q.htmlEncode(g.Name);
+                }).join(", ");
+            };
+            GenreListFormatter = __decorate([
+                Serenity.Decorators.registerFormatter()
+            ], GenreListFormatter);
+            return GenreListFormatter;
+        }());
+        MovieDB.GenreListFormatter = GenreListFormatter;
+    })(MovieDB = CoreDevAdmin.MovieDB || (CoreDevAdmin.MovieDB = {}));
+})(CoreDevAdmin || (CoreDevAdmin = {}));
+var CoreDevAdmin;
+(function (CoreDevAdmin) {
+    var MovieDB;
+    (function (MovieDB) {
         var MovieDialog = /** @class */ (function (_super) {
             __extends(MovieDialog, _super);
             function MovieDialog() {

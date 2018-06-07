@@ -2520,6 +2520,11 @@ declare namespace CoreDevAdmin.MovieDB {
     }
 }
 declare namespace CoreDevAdmin.MovieDB {
+    class GenreListFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+    }
+}
+declare namespace CoreDevAdmin.MovieDB {
     class MovieDialog extends Serenity.EntityDialog<MovieRow, any> {
         protected getFormKey(): string;
         protected getIdProperty(): string;
