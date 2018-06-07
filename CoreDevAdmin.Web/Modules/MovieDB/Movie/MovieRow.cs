@@ -10,7 +10,7 @@ namespace CoreDevAdmin.MovieDB.Entities
     using System.IO;
 
     [ConnectionKey("Default"), Module("MovieDB"), TableName("[mov].[Movie]")]
-    [DisplayName("Movie"), InstanceName("Movie")]
+    [DisplayName("Movies"), InstanceName("Movie")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
     public sealed class MovieRow : Row, IIdRow, INameRow
@@ -58,7 +58,7 @@ namespace CoreDevAdmin.MovieDB.Entities
             set { Fields.ReleaseDate[this] = value; }
         }
 
-        [DisplayName("Runtime")]
+        [DisplayName("Runtime (mins)")]
         public Int32? Runtime
         {
             get { return Fields.Runtime[this]; }

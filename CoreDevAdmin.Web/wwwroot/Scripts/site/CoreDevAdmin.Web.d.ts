@@ -785,8 +785,8 @@ declare namespace CoreDevAdmin.MovieDB {
 declare namespace CoreDevAdmin.MovieDB {
     interface MovieForm {
         Title: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
-        Storyline: Serenity.StringEditor;
+        Description: Serenity.TextAreaEditor;
+        Storyline: Serenity.TextAreaEditor;
         Year: Serenity.IntegerEditor;
         ReleaseDate: Serenity.DateEditor;
         Runtime: Serenity.IntegerEditor;
