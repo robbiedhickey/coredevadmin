@@ -1,0 +1,9 @@
+﻿{
+  "RootNamespace": "CoreDevAdmin",
+  "ServerTypings": {
+    "Assemblies": []
+  },
+  "Connections": [],
+  "BaseRowClasses": [],
+  "RemoveForeignFields": []
+}
