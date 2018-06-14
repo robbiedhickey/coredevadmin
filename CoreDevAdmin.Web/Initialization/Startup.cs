@@ -121,8 +121,6 @@ namespace CoreDevAdmin
             app.UseMvc(routes =>
             {
             });
-
-            DataMigrations.Initialize();
         }
 
         public static void RegisterDataProviders()
